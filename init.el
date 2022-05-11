@@ -45,3 +45,12 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+
+;; corfu
+(use-package corfu
+  :hook (after-init . global-corfu-mode)
+  :custom
+  (corfu-auto t)
+  (corfu-auto-delay 0)
+  (corfu-auto-prefix 2)
+  )
