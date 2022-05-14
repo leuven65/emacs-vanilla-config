@@ -24,7 +24,7 @@
 (global-set-key (kbd "C-/") #'undo-only)
 
 ;; set font
-(set-face-attribute 'default nil :font "Consolas-11")
+(set-face-attribute 'default nil :font "Fira Code-11")
 
 ;; theme
 ;; (load-theme 'modus-vivendi) ; dark
@@ -53,4 +53,40 @@
   (corfu-auto t)
   (corfu-auto-delay 0)
   (corfu-auto-prefix 2)
+  )
+
+(use-package diff-hl
+  :hook ((after-init . global-diff-hl-mode)
+	 ;; (after-init . diff-hl-flydiff-mode)
+	 )
+  )
+
+(use-package quelpa-use-package
+  :custom
+  ;; disable all fetching of the MELPA repo
+  (quelpa-checkout-melpa-p nil)
+  ;; avoid updating the local clone of the MELPA git repo
+  (quelpa-update-melpa-p nil)
+  )
+
+(use-package ligature
+  :quelpa ((ligature :fetcher github
+		     :repo "https://github.com/mickeynp/ligature.el"))
+  :hook (after-init . global-ligature-mode)
+  :config
+  ;; Enable the www ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+
+  ;; Enable ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+                                       ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+                                       "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+                                       "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+                                       "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+                                       "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+                                       "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+                                       "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+                                       "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+                                       "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+
   )
