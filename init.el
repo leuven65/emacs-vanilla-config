@@ -22,6 +22,7 @@
 ;; keybindings
 (global-set-key (kbd "C-x C-k") #'kill-this-buffer)
 (global-set-key (kbd "C-/") #'undo-only)
+(global-set-key (kbd "C-x C-S-e") #'pp-macroexpand-last-sexp)
 
 ;; set font
 (set-face-attribute 'default nil :font "Cascadia Code-11")
@@ -29,8 +30,8 @@
 ;; (set-face-attribute 'default nil :font "Consolas-12")
 
 ;; theme
-;; (load-theme 'modus-vivendi) ; dark
-(load-theme 'modus-operandi) ;light
+(load-theme 'modus-vivendi) ; dark
+;; (load-theme 'modus-operandi) ;light
 
 ;; custom-file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
