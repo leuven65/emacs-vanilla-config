@@ -94,3 +94,36 @@
                                        "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
                                        "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
   )
+
+(use-package system-packages
+  :custom
+  (system-packages-use-sudo nil)
+  )
+
+(setq ispell-program-name "aspell")
+(setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together"))
+
+(use-package pdf-tools
+  :hook (after-init . pdf-loader-install)
+  )
+
+(use-package c-ts-mode
+  :custom
+  (c-ts-mode-indent-style #'my-c-ts-mode-indent-style)
+  :init
+  (defun my-c-ts-mode-indent-style (&optional mode)
+    (let* ((mode (or mode (if (derived-mode-p 'c-ts-mode) 'c 'cpp)))
+	   (base-style (alist-get 'bsd (c-ts-mode--indent-styles mode))))
+      (append '(
+		;; ((node-is "case") parent-bol c-ts-mode-indent-offset)
+		;; ((parent-is "argument_list") parent-bol c-ts-mode-indent-offset)
+		)
+	      base-style)
+      )
+    )
+  )
+
+(use-package clang-format
+  )
+
+(put 'narrow-to-region 'disabled nil)
