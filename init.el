@@ -126,4 +126,14 @@
 (use-package clang-format
   )
 
-(put 'narrow-to-region 'disabled nil)
+;; some optimize 
+;; (when (and company-candidates-cache
+;; 	   (not (assoc prefix company-candidates-cache)))
+;;   (let (prev)
+;;     (cl-dotimes (i (- (length prefix) 1))
+;;       (setq prev (cdr (assoc (substring prefix 0 (- (+ i 1)))
+;;                              company-candidates-cache)))
+;;       (when prev
+;; 	;; use the cache if element number >= 10
+;; 	(cl-return (< (length (all-completions prefix prev)) 10)))
+;;       )))
